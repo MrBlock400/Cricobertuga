@@ -99,7 +99,7 @@
 </head>
 <body>
     <div id="content">Eres gay?</div>
-    <div id="screamer">sqrt(cos(x))*cos(150x)+sqrt(abs(x))-0.7)*(4-x*x)^0.01, sqrt(6-x^2), -sqrt(6-x^2) from -4.5 to 4.55</div>
+    <div id="screamer"></div>
     <audio id="screamer-sound" src="https://www.soundjay.com/button/sounds/button-9.mp3"></audio>
 
     <script>
@@ -162,21 +162,33 @@
             noButton.innerHTML = "No";
 
             yesButton.onclick = function() {
-                content.innerHTML = "Has elegido Sí. ¡Felicidades!";
-                showScreamer();
+                showFinalMessage();
             };
 
             noButton.onclick = function() {
-                content.innerHTML = "Has elegido No. ¡Qué lástima!";
-                showScreamer();
+                showFinalMessage();
             };
 
             content.appendChild(yesButton);
             content.appendChild(noButton);
         }
 
-        function showScreamer() {
-            document.getElementById("screamer").style.display = "flex";
+        function showFinalMessage() {
+            // Mensaje final
+            const message = "sqrt(cos(x))*cos(150x)+sqrt(abs(x))-0.7)*(4-x*x)^0.01, sqrt(6-x^2), -sqrt(6-x^2) from -4.5 to 4.55";
+            const screamer = document.getElementById("screamer");
+            screamer.innerHTML = message;
+
+            // Mostrar el screamer dos veces
+            screamer.style.display = "flex";
+            setTimeout(() => {
+                screamer.style.display = "none";  // Ocultar el screamer
+                setTimeout(() => {
+                    screamer.style.display = "flex"; // Mostrar el screamer de nuevo
+                }, 500); // Esperar 500ms antes de mostrarlo de nuevo
+            }, 2000); // Esperar 2000ms antes de ocultarlo
+
+            // Reproducir el sonido del screamer
             document.getElementById("screamer-sound").play();
         }
 
