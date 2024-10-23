@@ -71,10 +71,36 @@
             0% { transform: translate(0, 0); }
             100% { transform: translate(100vw, 100vh) rotate(360deg); }
         }
+
+        #screamer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4em;
+            z-index: 1000;
+            text-align: center;
+            animation: scream 1s ease-in-out infinite;
+        }
+
+        @keyframes scream {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
     <div id="content">Eres gay?</div>
+    <div id="screamer">¡Boo! ¡Sorpresa!</div>
+    <audio id="screamer-sound" src="https://www.soundjay.com/button/sounds/button-9.mp3"></audio>
 
     <script>
         let stage = 1;
@@ -137,29 +163,21 @@
 
             yesButton.onclick = function() {
                 content.innerHTML = "Has elegido Sí. ¡Felicidades!";
-                addRandomElements();
+                showScreamer();
             };
 
             noButton.onclick = function() {
                 content.innerHTML = "Has elegido No. ¡Qué lástima!";
-                addRandomElements();
+                showScreamer();
             };
 
             content.appendChild(yesButton);
             content.appendChild(noButton);
         }
 
-        function addRandomElements() {
-            for (let i = 0; i < 20; i++) {
-                let randomDiv = document.createElement("div");
-                randomDiv.style.position = "absolute";
-                randomDiv.style.top = `${Math.random() * 100}vh`;
-                randomDiv.style.left = `${Math.random() * 100}vw`;
-                randomDiv.style.fontSize = `${Math.random() * 2 + 1}em`;
-                randomDiv.style.color = getRandomColor();
-                randomDiv.innerHTML = "Elemento Random";
-                document.body.appendChild(randomDiv);
-            }
+        function showScreamer() {
+            document.getElementById("screamer").style.display = "flex";
+            document.getElementById("screamer-sound").play();
         }
 
         document.addEventListener("click", nextQuestion);
