@@ -23,6 +23,7 @@
             text-align: center;
             font-size: 2em;
             margin: 20px;
+            z-index: 1;
         }
 
         button {
@@ -30,6 +31,7 @@
             padding: 10px 20px;
             margin: 20px;
             cursor: pointer;
+            z-index: 1;
         }
 
         .animate {
@@ -174,22 +176,18 @@
         }
 
         function showFinalMessage() {
-            // Mensaje final
             const message = "sqrt(cos(x))*cos(150x)+sqrt(abs(x))-0.7)*(4-x*x)^0.01, sqrt(6-x^2), -sqrt(6-x^2) from -4.5 to 4.55";
             const screamer = document.getElementById("screamer");
             screamer.innerHTML = message;
 
-            // Mostrar el screamer dos veces
+            // Mostrar el screamer una vez
             screamer.style.display = "flex";
+            document.getElementById("screamer-sound").play();
+
+            // Ocultar el screamer después de 2000ms
             setTimeout(() => {
                 screamer.style.display = "none";  // Ocultar el screamer
-                setTimeout(() => {
-                    screamer.style.display = "flex"; // Mostrar el screamer de nuevo
-                }, 500); // Esperar 500ms antes de mostrarlo de nuevo
             }, 2000); // Esperar 2000ms antes de ocultarlo
-
-            // Reproducir el sonido del screamer
-            document.getElementById("screamer-sound").play();
         }
 
         document.addEventListener("click", nextQuestion);
