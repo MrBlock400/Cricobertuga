@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricobertuga</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+            border: 20px solid white;
+            padding: 20px;
+        }
+        #content {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px;
+        }
+
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .animate {
+            animation: rainbow 1s infinite alternate;
+        }
+
+        @keyframes rainbow {
+            0% { color: red; }
+            20% { color: orange; }
+            40% { color: yellow; }
+            60% { color: green; }
+            80% { color: blue; }
+            100% { color: violet; }
+        }
+
+        .spam-colors, .random-shapes {
+            position: absolute;
+            animation: spam 0.5s infinite;
+            font-size: 2em;
+        }
+
+        .random-shapes {
+            border-radius: 50%;
+            background-color: red;
+            width: 50px;
+            height: 50px;
+            animation: shapes-move 2s infinite;
+        }
+
+        @keyframes spam {
+            0% { top: 0; left: 0; color: red; }
+            25% { top: 50%; left: 50%; color: green; }
+            50% { top: 100%; left: 0; color: blue; }
+            75% { top: 50%; left: 100%; color: purple; }
+            100% { top: 0; left: 0; color: yellow; }
+        }
+
+        @keyframes shapes-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100vw, 100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="content">Eres gay?</div>
+
+    <script>
+        let stage = 1;
+
+        function nextQuestion() {
+            const content = document.getElementById("content");
+            if (stage === 1) {
+                content.innerHTML = "Eres tonto?";
+                stage++;
+            } else if (stage === 2) {
+                content.innerHTML = "Cricoberto";
+                stage++;
+                content.classList.add("animate");
+                spamColors();
+            } else if (stage === 3) {
+                content.innerHTML = "¿Quieres continuar?";
+                createButtons();
+            }
+        }
+
+        function spamColors() {
+            for (let i = 0; i < 50; i++) {
+                let spamText = document.createElement("div");
+                spamText.className = "spam-colors";
+                spamText.innerHTML = "Cricoberto";
+                spamText.style.top = `${Math.random() * 100}vh`;
+                spamText.style.left = `${Math.random() * 100}vw`;
+                document.body.appendChild(spamText);
+            }
+            spawnShapes();
+        }
+
+        function spawnShapes() {
+            for (let i = 0; i < 20; i++) {
+                let shape = document.createElement("div");
+                shape.className = "random-shapes";
+                shape.style.top = `${Math.random() * 100}vh`;
+                shape.style.left = `${Math.random() * 100}vw`;
+                shape.style.backgroundColor = getRandomColor();
+                document.body.appendChild(shape);
+            }
+        }
+
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createButtons() {
+            const content = document.getElementById("content");
+            const yesButton = document.createElement("button");
+            const noButton = document.createElement("button");
+
+            yesButton.innerHTML = "Sí";
+            noButton.innerHTML = "No";
+
+            yesButton.onclick = function() {
+                content.innerHTML = "Has elegido Sí. ¡Felicidades!";
+                addRandomElements();
+            };
+
+            noButton.onclick = function() {
+                content.innerHTML = "Has elegido No. ¡Qué lástima!";
+                addRandomElements();
+            };
+
+            content.appendChild(yesButton);
+            content.appendChild(noButton);
+        }
+
+        function addRandomElements() {
+            for (let i = 0; i < 20; i++) {
+                let randomDiv = document.createElement("div");
+                randomDiv.style.position = "absolute";
+                randomDiv.style.top = `${Math.random() * 100}vh`;
+                randomDiv.style.left = `${Math.random() * 100}vw`;
+                randomDiv.style.fontSize = `${Math.random() * 2 + 1}em`;
+                randomDiv.style.color = getRandomColor();
+                randomDiv.innerHTML = "Elemento Random";
+                document.body.appendChild(randomDiv);
+            }
+        }
+
+        document.addEventListener("click", nextQuestion);
+    </script>
+</body>
+</html>
