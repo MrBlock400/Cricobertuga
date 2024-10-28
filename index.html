@@ -3,169 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricobertuga</title>
+    <title>Julio Conde Condón y la Mazurbanda</title>
     <style>
-        body, html {
-            height: 100%;
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background-color: black;
+            background-color: #333;
+        }
+        nav a {
             color: white;
-            overflow: hidden;
-            border: 20px solid white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        section {
             padding: 20px;
+            margin: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        #content {
+        h2 {
+            color: #4CAF50;
+        }
+        footer {
+            background-color: #333;
+            color: white;
             text-align: center;
-            font-size: 2em;
-            margin: 20px;
-            z-index: 1;
-        }
-
-        button {
-            font-size: 1em;
-            padding: 10px 20px;
-            margin: 20px;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .animate {
-            animation: rainbow 1s infinite alternate;
-        }
-
-        @keyframes rainbow {
-            0% { color: red; }
-            20% { color: orange; }
-            40% { color: yellow; }
-            60% { color: green; }
-            80% { color: blue; }
-            100% { color: violet; }
-        }
-
-        .spam-colors, .random-shapes {
-            position: absolute;
-            animation: spam 0.5s infinite;
-            font-size: 2em;
-        }
-
-        .random-shapes {
-            border-radius: 50%;
-            background-color: red;
-            width: 50px;
-            height: 50px;
-            animation: shapes-move 2s infinite;
-        }
-
-        @keyframes spam {
-            0% { top: 0; left: 0; color: red; }
-            25% { top: 50%; left: 50%; color: green; }
-            50% { top: 100%; left: 0; color: blue; }
-            75% { top: 50%; left: 100%; color: purple; }
-            100% { top: 0; left: 0; color: yellow; }
-        }
-
-        @keyframes shapes-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(100vw, 100vh) rotate(360deg); }
-        }
-
-        #message {
-            display: none;
+            padding: 10px;
             margin-top: 20px;
-            font-size: 1.5em;
-            color: red;
-            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div id="content">Eres gay?</div>
-    <div id="message"></div>
 
-    <script>
-        let stage = 1;
+<header>
+    <h1>Julio Conde Condón y la Mazurbanda</h1>
+    <p>Conoce la historia y el equipo detrás de la Mazurbanda</p>
+</header>
 
-        function nextQuestion() {
-            const content = document.getElementById("content");
-            if (stage === 1) {
-                content.innerHTML = "Eres tonto?";
-                stage++;
-            } else if (stage === 2) {
-                content.innerHTML = "Cricoberto";
-                stage++;
-                content.classList.add("animate");
-                spamColors();
-            } else if (stage === 3) {
-                content.innerHTML = "¿Quieres continuar?";
-                createButtons();
-            }
-        }
+<nav>
+    <a href="#biografia">Biografía de Julio Conde Condón</a>
+    <a href="#datos-personales">Datos Personales</a>
+    <a href="#accidente">Mayor Accidente</a>
+    <a href="#equipo-mazurbanda">Equipo Mazurbanda</a>
+</nav>
 
-        function spamColors() {
-            for (let i = 0; i < 50; i++) {
-                let spamText = document.createElement("div");
-                spamText.className = "spam-colors";
-                spamText.innerHTML = "Cricoberto";
-                spamText.style.top = `${Math.random() * 100}vh`;
-                spamText.style.left = `${Math.random() * 100}vw`;
-                document.body.appendChild(spamText);
-            }
-            spawnShapes();
-        }
+<section id="biografia">
+    <h2>Biografía de Julio Conde Condón</h2>
+    <p><!-- Aquí puedes escribir la biografía general de Julio Conde Condón. Ejemplo: -->
+       Julio Conde Condón es un destacado músico con años de experiencia en la escena musical. A lo largo de su vida, ha colaborado en diversos proyectos y ha sido fundamental en la creación de la Mazurbanda.</p>
+</section>
 
-        function spawnShapes() {
-            for (let i = 0; i < 20; i++) {
-                let shape = document.createElement("div");
-                shape.className = "random-shapes";
-                shape.style.top = `${Math.random() * 100}vh`;
-                shape.style.left = `${Math.random() * 100}vw`;
-                shape.style.backgroundColor = getRandomColor();
-                document.body.appendChild(shape);
-            }
-        }
+<section id="datos-personales">
+    <h2>Datos Personales</h2>
+    <ul>
+        <!-- Incluye la información personal específica de Julio Conde Condón aquí -->
+        <li><strong>Edad:</strong> <!-- Ejemplo: 35 años --></li>
+        <li><strong>Lugar de Estudio:</strong> <!-- Ejemplo: Conservatorio Nacional de Música --></li>
+        <li><strong>Años de Experiencia:</strong> <!-- Ejemplo: 15 años --></li>
+    </ul>
+</section>
 
-        function getRandomColor() {
-            let letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
+<section id="accidente">
+    <h2>Mayor Accidente</h2>
+    <p><!-- Aquí describe el mayor accidente que haya tenido Julio Conde Condón. Ejemplo: -->
+       En el año 2015, Julio sufrió un accidente automovilístico que afectó su carrera musical por un tiempo. Sin embargo, se recuperó rápidamente y volvió con más fuerza a los escenarios.</p>
+</section>
 
-        function createButtons() {
-            const content = document.getElementById("content");
-            const yesButton = document.createElement("button");
-            const noButton = document.createElement("button");
+<section id="equipo-mazurbanda">
+    <h2>Equipo Mazurbanda</h2>
+    <p>La Mazurbanda está formada por un talentoso grupo de músicos, cada uno aportando su estilo y habilidad para crear un sonido único. A continuación, presentamos a los integrantes:</p>
+    <ul>
+        <li><strong>Integrante 1:</strong> <!-- Nombre y rol en la banda --></li>
+        <li><strong>Integrante 2:</strong> <!-- Nombre y rol en la banda --></li>
+        <li><strong>Integrante 3:</strong> <!-- Nombre y rol en la banda --></li>
+        <li><strong>Integrante 4:</strong> <!-- Nombre y rol en la banda --></li>
+    </ul>
+</section>
 
-            yesButton.innerHTML = "Sí";
-            noButton.innerHTML = "No";
+<footer>
+    <p>&copy; 2024 Información sobre Julio Conde Condón y la Mazurbanda</p>
+</footer>
 
-            yesButton.onclick = function() {
-                showFinalMessage();
-            };
-
-            noButton.onclick = function() {
-                showFinalMessage();
-            };
-
-            content.appendChild(yesButton);
-            content.appendChild(noButton);
-        }
-
-        function showFinalMessage() {
-            const message = "sqrt(cos(x))*cos(150x)+sqrt(abs(x))-0.7)*(4-x*x)^0.01, sqrt(6-x^2), -sqrt(6-x^2) from -4.5 to 4.55";
-            const messageDiv = document.getElementById("message");
-            messageDiv.innerHTML = message;
-            messageDiv.style.display = "block"; // Mostrar el mensaje
-        }
-
-        document.addEventListener("click", nextQuestion);
-    </script>
 </body>
 </html>
